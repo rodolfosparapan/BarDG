@@ -1,5 +1,9 @@
+using BarDG.Data.Config;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace BarDG.Api
 {
@@ -7,7 +11,9 @@ namespace BarDG.Api
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            IniciarBancoDados(host);
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -16,5 +22,23 @@ namespace BarDG.Api
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        private static void IniciarBancoDados(IHost host)
+        {
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var context = services.GetRequiredService<BarDGContext>();
+                    DBInitializer.Initialize(context);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "Ocorreu um erro ao criar o banco de dados!");
+                }
+            }
+        }
     }
 }
