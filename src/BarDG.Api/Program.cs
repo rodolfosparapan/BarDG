@@ -12,7 +12,7 @@ namespace BarDG.Api
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            IniciarBancoDados(host);
+            CreateDbIfNotExists(host);
             host.Run();
         }
 
@@ -23,7 +23,7 @@ namespace BarDG.Api
                     webBuilder.UseStartup<Startup>();
                 });
 
-        private static void IniciarBancoDados(IHost host)
+        private static void CreateDbIfNotExists(IHost host)
         {
             using (var scope = host.Services.CreateScope())
             {
