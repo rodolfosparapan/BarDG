@@ -1,4 +1,4 @@
-﻿namespace BarDG.Domain.Produtos.Entity
+﻿namespace BarDG.Domain.Entities
 {
     public class Produto
     {

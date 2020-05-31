@@ -1,4 +1,4 @@
-using BarDG.Data.Config;
+using BarDG.Data.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

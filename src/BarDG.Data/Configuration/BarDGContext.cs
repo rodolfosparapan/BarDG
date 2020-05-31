@@ -1,9 +1,7 @@
-﻿using BarDG.Domain.Fiscal.Entities;
-using BarDG.Domain.Produtos.Entity;
-using BarDG.Domain.Vendas.Entities;
+﻿using BarDG.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BarDG.Data.Config
+namespace BarDG.Data.Configuration
 {
     public class BarDGContext : DbContext
     {

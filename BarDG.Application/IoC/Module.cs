@@ -1,9 +1,9 @@
-﻿using BarDG.Domain.Interfaces;
-using BarDG.Domain.Services;
+﻿using BarDG.Application.Interfaces;
+using BarDG.Application.Services;
 using System;
 using System.Collections.Generic;
 
-namespace BarDG.Domain.IoC
+namespace BarDG.Application.IoC
 {
     public static class Module
     {
@@ -11,7 +11,7 @@ namespace BarDG.Domain.IoC
         {
             var result = new Dictionary<Type, Type>
             {
-                { typeof(IVendaService), typeof(VendaService) },
+                { typeof(IVendaAppService), typeof(VendaAppService) },
             };
 
             return result;

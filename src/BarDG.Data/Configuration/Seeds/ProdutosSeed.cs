@@ -1,6 +1,6 @@
-﻿using BarDG.Domain.Produtos.Entity;
+﻿using BarDG.Domain.Entities;
 
-namespace BarDG.Data.Config.Seed
+namespace BarDG.Data.Configuration.Seed
 {
     public static class ProdutosSeed
     {

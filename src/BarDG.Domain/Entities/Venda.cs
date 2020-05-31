@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BarDG.Domain.Vendas.Entities
+﻿namespace BarDG.Domain.Entities
 {
     public class Venda
     {

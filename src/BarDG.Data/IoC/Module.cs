@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BarDG.Data.Interfaces;
+using BarDG.Data.Repositories;
+using System;
 using System.Collections.Generic;
 
 namespace BarDG.Data.IoC
@@ -9,7 +11,7 @@ namespace BarDG.Data.IoC
         {
             var result = new Dictionary<Type, Type>
             {
-                //{ typeof(IVendasRepository), typeof(VendasRepository) },
+                { typeof(IVendaRepository), typeof(VendaRepository) },
             };
 
             return result;

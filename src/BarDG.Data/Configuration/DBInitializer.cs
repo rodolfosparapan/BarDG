@@ -1,7 +1,7 @@
-﻿using BarDG.Data.Config.Seed;
+﻿using BarDG.Data.Configuration.Seed;
 using System.Linq;
 
-namespace BarDG.Data.Config
+namespace BarDG.Data.Configuration
 {
     public static class DBInitializer
     {

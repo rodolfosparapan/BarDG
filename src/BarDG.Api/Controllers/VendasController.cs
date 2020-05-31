@@ -1,4 +1,4 @@
-﻿using BarDG.Domain.Vendas.Requests;
+﻿using BarDG.Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -13,20 +13,20 @@ namespace BarDG.Api.Controllers
         }
         
         [HttpPost("adicionarItem")]
-        public async Task<IActionResult> Registrar(AdicionarItemComandaRequest adicionarItemComandaRequest)
+        public async Task<IActionResult> Registrar(AdicionarVendaItemRequest adicionarVendaItemRequest)
         {
             await Task.CompletedTask;
-            return CreatedAtAction(nameof(adicionarItemComandaRequest), new { id = 1 }, adicionarItemComandaRequest);
+            return CreatedAtAction(nameof(adicionarVendaItemRequest), new { id = 1 }, adicionarVendaItemRequest);
         }
 
-        [HttpPut("fecharComanda")]
+        [HttpPost("finalizar")]
         public async Task <IActionResult> FecharComanda(string codigoComanda)
         {
             await Task.CompletedTask;
             return Ok();
         }
 
-        [HttpPut("resetarComanda")]
+        [HttpPut("resetar")]
         public async Task<IActionResult> ResetarComanda(string codigoComanda)
         {
             await Task.CompletedTask;

@@ -1,4 +1,4 @@
-﻿using BarDG.Data.Config;
+﻿using BarDG.Data.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,14 +12,20 @@ namespace BarDG.CrossCutting
         public static void Register(IServiceCollection services, IConfiguration configuration)
         {
             RegisterDatabase(services, configuration);
-            
+
             RegisterDataServices(services);
             RegisterDomainServices(services);
+            RegisterApplicationServices(services);
         }
 
         private static void RegisterDatabase(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<BarDGContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        }
+
+        private static void RegisterApplicationServices(IServiceCollection services)
+        {
+            services.RegisterTypes(Application.IoC.Module.GetTypes());
         }
 
         private static void RegisterDataServices(IServiceCollection services)

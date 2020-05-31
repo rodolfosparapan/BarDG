@@ -1,4 +1,4 @@
-﻿namespace BarDG.Domain.Fiscal.Entities
+﻿namespace BarDG.Domain.Entities
 {
     public class NotaItem
     {
