@@ -1,4 +1,5 @@
 ﻿using BarDG.Application.Dtos;
+using BarDG.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -6,10 +7,13 @@ namespace BarDG.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class VendasController : ControllerBase
+    public class VendasController : ApiBase
     {
-        public VendasController()
+        private readonly IVendaAppService appService;
+
+        public VendasController(IVendaAppService appService) : base(appService)
         {
+            this.appService = appService;
         }
         
         [HttpPost("adicionarItem")]

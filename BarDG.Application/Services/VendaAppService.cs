@@ -3,7 +3,7 @@ using BarDG.Domain.Entities;
 
 namespace BarDG.Application.Services
 {
-    internal class VendaAppService : IVendaAppService
+    internal class VendaAppService : AppServiceBase, IVendaAppService
     {
         public int AdicionarItem(VendaItem vendaItem)
         {
