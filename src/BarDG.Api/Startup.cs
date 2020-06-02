@@ -25,6 +25,8 @@ namespace BarDG.Api
 
             services.AddControllers();
 
+            services.AddAuthSetup(configuration);
+
             services.AddSwaggerSetup();
         }
 
@@ -40,6 +42,8 @@ namespace BarDG.Api
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.UseAuthentication();
 
             app.UseSwaggerSetup();
 

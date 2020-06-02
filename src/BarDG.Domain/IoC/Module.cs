@@ -1,4 +1,4 @@
-﻿using BarDG.Domain.Interfaces;
+﻿using BarDG.Domain.Interfaces.Services;
 using BarDG.Domain.Services;
 using System;
 using System.Collections.Generic;

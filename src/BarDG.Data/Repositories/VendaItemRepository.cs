@@ -4,9 +4,9 @@ using BarDG.Domain.Interfaces.Repositories;
 
 namespace BarDG.Data.Repositories
 {
-    internal class VendaRepository : Repository<Venda>, IVendaRepository
+    internal class VendaItemRepository : Repository<VendaItem>, IVendaItemRepository
     {
-        public VendaRepository(BarDGContext context) : base(context)
+        public VendaItemRepository(BarDGContext context) : base(context)
         {
         }
     }

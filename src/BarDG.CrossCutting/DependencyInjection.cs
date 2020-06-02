@@ -1,4 +1,4 @@
-﻿using BarDG.Data.Configuration;
+﻿using BarDG.Data.EFConfiguration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

@@ -1,10 +1,11 @@
 ﻿using BarDG.Application.Dtos;
 using BarDG.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace BarDG.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class VendasController : ApiBase
@@ -17,24 +18,33 @@ namespace BarDG.Api.Controllers
         }
         
         [HttpPost("adicionarItem")]
-        public async Task<IActionResult> Registrar(AdicionarVendaItemRequest adicionarVendaItemRequest)
+        public IActionResult RegistrarItem(AdicionarVendaItemRequest adicionarVendaItemRequest)
         {
-            await Task.CompletedTask;
-            return CreatedAtAction(nameof(adicionarVendaItemRequest), new { id = 1 }, adicionarVendaItemRequest);
+            var id = appService.AdicionarItem(adicionarVendaItemRequest);   
+            if(id > 0)
+                return CreatedAtAction(nameof(adicionarVendaItemRequest), new { id }, adicionarVendaItemRequest);
+
+            return BadRequest();
         }
 
         [HttpPost("finalizar")]
-        public async Task <IActionResult> FecharComanda(string codigoComanda)
+        public IActionResult FecharComanda(int vendaId)
         {
-            await Task.CompletedTask;
-            return Ok();
+            var sucesso = appService.Finalizar(vendaId);
+            if (sucesso)
+                return Ok();
+            
+            return BadRequest();
         }
 
         [HttpPut("resetar")]
-        public async Task<IActionResult> ResetarComanda(string codigoComanda)
+        public IActionResult ResetarComanda(int vendaId)
         {
-            await Task.CompletedTask;
-            return Ok();
+            var sucesso = appService.Resetar(vendaId);
+            if (sucesso)
+                return Ok();
+
+            return BadRequest();
         }
     }
 }
