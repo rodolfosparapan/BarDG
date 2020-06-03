@@ -15,17 +15,11 @@ namespace BarDG.CrossCutting
 
             RegisterDataServices(services);
             RegisterDomainServices(services);
-            RegisterApplicationServices(services);
         }
 
         private static void RegisterDatabase(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<BarDGContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-        }
-
-        private static void RegisterApplicationServices(IServiceCollection services)
-        {
-            services.RegisterTypes(Application.IoC.Module.GetTypes());
         }
 
         private static void RegisterDataServices(IServiceCollection services)
@@ -35,7 +29,7 @@ namespace BarDG.CrossCutting
 
         private static void RegisterDomainServices(IServiceCollection services)
         {
-            services.RegisterTypes(Domain.IoC.Module.GetTypes());
+            services.RegisterTypes(Domain.Common.IoC.Module.GetTypes());
         }
 
         private static void RegisterTypes(this IServiceCollection services, Dictionary<Type, Type> types)

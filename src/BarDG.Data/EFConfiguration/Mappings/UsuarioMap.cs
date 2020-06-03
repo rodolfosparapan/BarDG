@@ -1,4 +1,4 @@
-﻿using BarDG.Domain.Entities;
+﻿using BarDG.Domain.Usuarios.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

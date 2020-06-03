@@ -1,5 +1,5 @@
-﻿using BarDG.Application.Dtos;
-using BarDG.Application.Interfaces;
+﻿using BarDG.Domain.Common;
+using BarDG.Domain.Common.Interfaces;
 using Flunt.Notifications;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -10,9 +10,9 @@ namespace BarDG.Api.Controllers
     public abstract class ApiBase : ControllerBase
     {
         private List<Notification> notificacoes { get; set; }
-        private readonly IAppService appService;
+        private readonly IService appService;
 
-        protected ApiBase(IAppService service)
+        protected ApiBase(IService service)
         {
             notificacoes = new List<Notification>();
             this.appService = service;

@@ -1,5 +1,5 @@
-﻿using BarDG.Application.Dtos;
-using BarDG.Application.Interfaces;
+﻿using BarDG.Domain.Vendas.Dtos;
+using BarDG.Domain.Vendas.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,17 +10,17 @@ namespace BarDG.Api.Controllers
     [Route("api/[controller]")]
     public class VendasController : ApiBase
     {
-        private readonly IVendaAppService appService;
+        private readonly IVendaService service;
 
-        public VendasController(IVendaAppService appService) : base(appService)
+        public VendasController(IVendaService service) : base(service)
         {
-            this.appService = appService;
+            this.service = service;
         }
         
         [HttpPost("adicionarItem")]
-        public IActionResult RegistrarItem(AdicionarVendaItemRequest adicionarVendaItemRequest)
+        public IActionResult RegistrarItem(VendaItemRequest adicionarVendaItemRequest)
         {
-            var id = appService.AdicionarItem(adicionarVendaItemRequest);   
+            var id = service.AdicionarItem(adicionarVendaItemRequest);   
             if(id > 0)
                 return CreatedAtAction(nameof(adicionarVendaItemRequest), new { id }, adicionarVendaItemRequest);
 
@@ -30,7 +30,7 @@ namespace BarDG.Api.Controllers
         [HttpPost("finalizar")]
         public IActionResult FecharComanda(int vendaId)
         {
-            var sucesso = appService.Finalizar(vendaId);
+            var sucesso = service.Finalizar(vendaId);
             if (sucesso)
                 return Ok();
             
@@ -40,7 +40,7 @@ namespace BarDG.Api.Controllers
         [HttpPut("resetar")]
         public IActionResult ResetarComanda(int vendaId)
         {
-            var sucesso = appService.Resetar(vendaId);
+            var sucesso = service.Resetar(vendaId);
             if (sucesso)
                 return Ok();
 

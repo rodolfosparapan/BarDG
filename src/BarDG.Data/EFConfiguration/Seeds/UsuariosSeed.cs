@@ -1,4 +1,4 @@
-﻿using BarDG.Domain.Entities;
+﻿using BarDG.Domain.Usuarios.Entities;
 using System.Linq;
 
 namespace BarDG.Data.EFConfiguration.Seeds

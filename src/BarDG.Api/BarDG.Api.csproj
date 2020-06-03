@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BarDG.CrossCutting\BarDG.CrossCutting.csproj" />
+    <ProjectReference Include="..\BarDG.Domain\BarDG.Domain.csproj" />
   </ItemGroup>
 
 

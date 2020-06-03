@@ -1,10 +1,10 @@
 ﻿using BarDG.Data.EFConfiguration;
-using BarDG.Domain.Entities;
-using BarDG.Domain.Interfaces.Repositories;
+using BarDG.Domain.Vendas.Entities;
+using BarDG.Domain.Vendas.Interfaces;
 
 namespace BarDG.Data.Repositories
 {
-    internal class VendaRepository : Repository<Venda>, IVendaRepository
+    internal class VendaRepository : RepositoryBase<Venda>, IVendaRepository
     {
         public VendaRepository(BarDGContext context) : base(context)
         {

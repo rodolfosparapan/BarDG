@@ -1,12 +1,12 @@
 ﻿using BarDG.Data.EFConfiguration;
-using BarDG.Domain.Entities;
-using BarDG.Domain.Interfaces.Repositories;
+using BarDG.Domain.Usuarios.Entities;
+using BarDG.Domain.Usuarios.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace BarDG.Data.Repositories
 {
-    internal class UsuarioRepository : Repository<Usuario>, IUsuarioRepository
+    internal class UsuarioRepository : RepositoryBase<Usuario>, IUsuarioRepository
     {
         public UsuarioRepository(BarDGContext context) : base(context)
         {

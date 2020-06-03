@@ -1,5 +1,5 @@
 ﻿using BarDG.Data.EFConfiguration;
-using BarDG.Domain.Interfaces;
+using BarDG.Domain.Common.Interfaces;
 
 namespace BarDG.Data.UoW
 {

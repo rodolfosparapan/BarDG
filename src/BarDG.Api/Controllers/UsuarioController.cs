@@ -1,5 +1,5 @@
 ﻿using BarDG.Api.Configuration;
-using BarDG.Domain.Interfaces.Repositories;
+using BarDG.Domain.Usuarios.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 

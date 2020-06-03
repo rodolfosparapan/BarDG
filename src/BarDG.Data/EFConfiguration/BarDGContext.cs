@@ -1,5 +1,8 @@
 ﻿using BarDG.Data.EFConfiguration.Mappings;
-using BarDG.Domain.Entities;
+using BarDG.Domain.Fiscal.Entities;
+using BarDG.Domain.Produtos.Entities;
+using BarDG.Domain.Usuarios.Entities;
+using BarDG.Domain.Vendas.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BarDG.Data.EFConfiguration

@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BarDG.Application\BarDG.Application.csproj" />
     <ProjectReference Include="..\BarDG.Data\BarDG.Data.csproj" />
     <ProjectReference Include="..\BarDG.Domain\BarDG.Domain.csproj" />
   </ItemGroup>

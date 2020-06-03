@@ -1,7 +1,8 @@
 ﻿using BarDG.Data.Repositories;
 using BarDG.Data.UoW;
-using BarDG.Domain.Interfaces;
-using BarDG.Domain.Interfaces.Repositories;
+using BarDG.Domain.Common.Interfaces;
+using BarDG.Domain.Usuarios.Interfaces;
+using BarDG.Domain.Vendas.Interfaces;
 using System;
 using System.Collections.Generic;
 
