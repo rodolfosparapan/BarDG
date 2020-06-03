@@ -1,31 +1,30 @@
-﻿using BarDG.Domain.Vendas.Entities;
+﻿using BarDG.Domain.Produtos.Interfaces;
+using BarDG.Domain.Vendas.Dtos;
+using BarDG.Domain.Vendas.Entities;
+using BarDG.Domain.Vendas.Regras.Brindes.Interfaces;
 using System.Collections.Generic;
 
 namespace BarDG.Domain.Vendas.Regras.Brindes
 {
-    internal class VendaBrindes : IVendaRegra
+    public class VendaBrindes : IVendaBrindes
     {
-        private List<IVendaBrinde> brindes;
+        private List<IItemBrinde> brindes;
 
-        public VendaBrindes()
+        public VendaBrindes(IProdutoRepository produtoRepository)
         {
-            brindes = new List<IVendaBrinde>{
-                //new BrindeAgua()
+            brindes = new List<IItemBrinde>
+            {
+                new BrindeAgua(produtoRepository)
             };
         }
 
-        public void Aplicar(IEnumerable<VendaItem> vendaItens, VendaItem novoItem)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<VendaItem> Listar(IEnumerable<VendaItem> itens, VendaItem novoItem)
-        {
+        public IEnumerable<VendaItem> Listar(IEnumerable<ComandaItemDto> itens)
+        {    
             var produtoBrindes = new List<VendaItem>();
             
             foreach(var brinde in brindes)
             {
-                if(brinde.Analisar(itens, novoItem))
+                if(brinde.Analisar(itens))
                 {
                     produtoBrindes.Add(brinde.Obter());
                 }

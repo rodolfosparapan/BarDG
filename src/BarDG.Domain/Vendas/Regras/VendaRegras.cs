@@ -1,23 +1,24 @@
-﻿using BarDG.Domain.Vendas.Entities;
-using System.Collections.Generic;
+﻿using BarDG.Domain.Produtos.Interfaces;
+using BarDG.Domain.Vendas.Regras.Brindes;
+using BarDG.Domain.Vendas.Regras.Brindes.Interfaces;
+using BarDG.Domain.Vendas.Regras.Descontos;
+using BarDG.Domain.Vendas.Regras.Descontos.Interfaces;
+using BarDG.Domain.Vendas.Regras.Limites.Interfaces;
+using BBarDG.Domain.Vendas.Regras.Limites;
 
 namespace BarDG.Domain.Vendas.Regras
 {
-    internal static class VendaRegras
+    internal class VendaRegras : IVendaRegras
     {
-        public static void Aplicar(IEnumerable<VendaItem> vendaItens, VendaItem novoItem)
+        public IVendaBrindes Brindes { get; }
+        public IVendaDescontos Descontos { get; }
+        public IVendaLimites Limites { get; }
+        
+        public VendaRegras(IProdutoRepository produtoRepository)
         {
-            var vendaRegras = new List<IVendaRegra>()
-            {
-                //new VendaItemBrinde(),
-                //new VendaItemDesconto(),
-                //new VendaItemLimite(),
-            };
-
-            foreach(var vendaRegra in vendaRegras)
-            {
-                vendaRegra.Aplicar(vendaItens, novoItem);
-            }
+            Brindes = new VendaBrindes(produtoRepository);
+            Descontos = new VendaDescontos();
+            Limites = new VendaLimites();
         }
     }
 }

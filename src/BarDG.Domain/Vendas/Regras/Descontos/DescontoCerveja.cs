@@ -1,28 +1,28 @@
-﻿using BarDG.Domain.Produtos.Interfaces;
-using BarDG.Domain.Vendas.Entities;
-using System;
+﻿using BarDG.Domain.Produtos.Enums;
+using BarDG.Domain.Vendas.Dtos;
+using BarDG.Domain.Vendas.Regras.Descontos.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BarDG.Domain.Vendas.Regras.Descontos
 {
-    internal class DescontoCerveja : IVendaDesconto
+    internal class DescontoCerveja : IItemDesconto
     {
-        private readonly IProdutoRepository produtoRepository;
-
-        public DescontoCerveja(IProdutoRepository produtoRepository)
+        public bool Analisar(IEnumerable<ComandaItemDto> itens)
         {
-            this.produtoRepository = produtoRepository;
+            var totalCervejas = itens.Count(i => i.ProdutoTipo == ProdutoTipo.Cerveja);
+            var totalSucos = itens.Count(i => i.ProdutoTipo == ProdutoTipo.Suco);
+
+            return totalCervejas == 1 && totalSucos == 1;
         }
 
-        public bool Analisar(IEnumerable<VendaItem> itens)
+        public void AplicarDesconto(IEnumerable<ComandaItemDto> itens)
         {
-            //produtoRepository.li
-            throw new NotImplementedException();
-        }
-
-        public void Aplicar(VendaItem vendaItem)
-        {
-            throw new NotImplementedException();
+            var cerveja = itens.FirstOrDefault(i => i.ProdutoTipo == ProdutoTipo.Cerveja);
+            if(cerveja != null)
+            {
+                cerveja.Preco = 3;
+            }
         }
     }
 }

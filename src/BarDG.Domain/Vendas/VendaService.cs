@@ -1,8 +1,12 @@
 ﻿using BarDG.Domain.Common;
 using BarDG.Domain.Common.Interfaces;
 using BarDG.Domain.Vendas.Dtos;
+using BarDG.Domain.Vendas.Dtos.Request;
+using BarDG.Domain.Vendas.Dtos.Response;
 using BarDG.Domain.Vendas.Entities;
 using BarDG.Domain.Vendas.Interfaces;
+using BarDG.Domain.Vendas.Regras;
+using System.Collections.Generic;
 
 namespace BarDG.Domain.Vendas
 {
@@ -11,20 +15,36 @@ namespace BarDG.Domain.Vendas
         private readonly IUnitOfWork unitOfWork;
         private readonly IVendaRepository vendaRepository;
         private readonly IVendaItemRepository vendaItemRepository;
+        private readonly IVendaRegras vendaRegras;
 
         public VendaService(
             IUnitOfWork unitOfWork,
-            IVendaRepository vendaRepository, IVendaItemRepository vendaItemRepository)
+            IVendaRepository vendaRepository, 
+            IVendaItemRepository vendaItemRepository,
+            IVendaRegras vendaRegras)
         {
             this.unitOfWork = unitOfWork;
             this.vendaRepository = vendaRepository;
             this.vendaItemRepository = vendaItemRepository;
+            this.vendaRegras = vendaRegras;
         }
 
-        public int AdicionarItem(VendaItemRequest vendaItemRequest)
+        public AdicionarVendaItemResponse AdicionarItem(AdicionarVendaItemRequest vendaItemRequest)
         {
             if (!ValidarRequest(vendaItemRequest))
-                return 0;
+            {
+                return null;
+            }
+
+            var itens = new List<ComandaItemDto>();
+
+            if(vendaRegras.Limites.Analisar(itens))
+            {
+                AdicionarNotificacoes(vendaRegras.Limites.ListarMensagens());
+                return null;
+            }
+
+            vendaRegras.Descontos.Aplicar(itens);
 
             var vendaItem = new VendaItem(vendaItemRequest.VendaId, vendaItemRequest.ProdutoId, string.Empty, vendaItemRequest.Preco, vendaItemRequest.Desconto);
 
@@ -36,7 +56,11 @@ namespace BarDG.Domain.Vendas
 
             unitOfWork.Commit();
 
-            return vendaItem.Id;
+            return new AdicionarVendaItemResponse
+            {
+                ItemAdicionado = vendaItem,
+                Brindes = vendaRegras.Brindes.Listar(itens)
+            };
         }
 
         public bool Finalizar(int vendaId)

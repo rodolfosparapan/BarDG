@@ -19,5 +19,10 @@
             Preco = preco;
             Desconto = desconto;
         }
+
+        public void AtualizarPreco(decimal preco)
+        {
+            Preco = preco;
+        }
     }
 }

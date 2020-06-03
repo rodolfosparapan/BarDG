@@ -1,4 +1,4 @@
-﻿using BarDG.Domain.Vendas.Dtos;
+﻿using BarDG.Domain.Vendas.Dtos.Request;
 using BarDG.Domain.Vendas.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,12 +18,14 @@ namespace BarDG.Api.Controllers
         }
         
         [HttpPost("adicionarItem")]
-        public IActionResult RegistrarItem(VendaItemRequest adicionarVendaItemRequest)
+        public IActionResult RegistrarItem(AdicionarVendaItemRequest adicionarVendaItemRequest)
         {
-            var id = service.AdicionarItem(adicionarVendaItemRequest);   
-            if(id > 0)
-                return CreatedAtAction(nameof(adicionarVendaItemRequest), new { id }, adicionarVendaItemRequest);
-
+            var retorno = service.AdicionarItem(adicionarVendaItemRequest);
+            if (retorno.ItemAdicionado != null)
+            {
+                return CreatedAtAction(nameof(adicionarVendaItemRequest), new { retorno.ItemAdicionado.Id }, adicionarVendaItemRequest);
+            }
+            
             return BadRequest();
         }
 

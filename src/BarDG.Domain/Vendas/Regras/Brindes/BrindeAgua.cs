@@ -1,12 +1,14 @@
 ﻿using BarDG.Domain.Produtos.Enums;
 using BarDG.Domain.Produtos.Interfaces;
+using BarDG.Domain.Vendas.Dtos;
 using BarDG.Domain.Vendas.Entities;
+using BarDG.Domain.Vendas.Regras.Brindes.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace BarDG.Domain.Vendas.Regras.Brindes
 {
-    internal class BrindeAgua : IVendaBrinde
+    internal class BrindeAgua : IItemBrinde
     {
         private const string codigoProdutoBrinde = "001";
         private readonly IProdutoRepository produtoRepository;
@@ -16,14 +18,10 @@ namespace BarDG.Domain.Vendas.Regras.Brindes
             this.produtoRepository = produtoRepository;
         }
 
-        public bool Analisar(IEnumerable<VendaItem> itens, VendaItem vendaItem)
+        public bool Analisar(IEnumerable<ComandaItemDto> itens)
         {
-            itens.ToList().Add(vendaItem);
-            var vendaProdutoIds = itens.Select(i => i.ProdutoId);
- 
-            var conhaquesECervejas = produtoRepository.ListarConhaqueECervejas();
-            var conhaques = conhaquesECervejas.Count(p => p.ProdutoTipo == ProdutoTipo.Conhaque && vendaProdutoIds.Contains(p.Id));
-            var cervejas = conhaquesECervejas.Count(p => p.ProdutoTipo == ProdutoTipo.Cerveja && vendaProdutoIds.Contains(p.Id));
+            var conhaques = itens.Count(p => p.ProdutoTipo == ProdutoTipo.Conhaque);
+            var cervejas = itens.Count(p => p.ProdutoTipo == ProdutoTipo.Cerveja);
 
             return conhaques == 3 && cervejas == 2;
         }
