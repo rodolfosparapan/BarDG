@@ -5,14 +5,14 @@ app.config(function($routeProvider) {
             controller: "HomeCtrl"
         })
 
-        .when("/lancamento", {
-            templateUrl: "app/views/lancamento.html",
-            controller: "LancamentoCtrl"
+        .when("/adicionar-item", {
+            templateUrl: "app/views/adicionar-item.html",
+            controller: "AdicionarItemCtrl"
         })
 
         .when("/resultados", {
-            templateUrl: "app/views/resultados.html",
-            controller: "ResultadosCtrl"
+            templateUrl: "app/views/visualizar-comanda.html",
+            controller: "VisualizarComandaCtrl"
         })
 
         .otherwise({ redirectTo: "/" });

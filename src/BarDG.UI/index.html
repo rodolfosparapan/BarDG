@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
-        <title>Registro de pontos do Basquete</title>
+        <title>BarDG</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
         <link rel="stylesheet" href="app/css/index.css" />        
@@ -15,18 +15,19 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
         <script src="app/app.js"></script>
-        <script src="app/controllers/home-controller.js"></script>
-        <script src="app/controllers/lancamento-controller.js"></script>
-        <script src="app/controllers/resultados-controller.js"></script>
+        <script src="app/controllers/home.controller.js"></script>
+        <script src="app/controllers/login.controller.js"></script>
+        <script src="app/controllers/adicionar-item.controller.js"></script>
+        <script src="app/controllers/visualizar-comanda.controller.js"></script>
         <script src="app/routes/route.js"></script>
-        <script src="app/services/jogo-basquete-service.js"></script>
+        <script src="app/services/vendas.service.js"></script>
         <script src="app/configValue.js"></script>        
     </head>
     <body ng-app="app">
         <nav class="navbar navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="#/home">
-                    Registro de pontos do Basquete
+                    BarDG
                 </a>
             </div>
         </nav>
@@ -35,13 +36,13 @@
                 <div class="col-md-3 menu">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item list-group-item-action">
-                            <a href="#/lancamento">
-                                Lançar pontos
+                            <a href="#/adicionar-item">
+                                Lançar Itens
                             </a>
                         </li>
                         <li class="list-group-item list-group-item-action">
-                            <a href="#/resultados">
-                                Ver resultados
+                            <a href="#/visualizar-comanda">
+                                Visualizar Comanda
                             </a>
                         </li>
                         <li class="list-group-item"></li>
@@ -55,7 +56,7 @@
         </main>
         <footer class="bg-dark">
             <p class="text-footer">
-                Teste desenvolvido por Rodolfo Sparapan
+                2020
             </p>
         </footer>
     </body>

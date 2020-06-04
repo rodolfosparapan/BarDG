@@ -1,3 +1,3 @@
 angular.module("app").value("config", {
-    baseUrl: "http://localhost:5001/api/Jogo"
+    baseUrl: "http://localhost:5001/api/"
 });
