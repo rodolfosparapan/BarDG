@@ -1,4 +1,6 @@
-﻿namespace BarDG.Domain.Vendas.Entities
+﻿using BarDG.Domain.Vendas.Dtos.Request;
+
+namespace BarDG.Domain.Vendas.Entities
 {
     public class VendaItem
     {
@@ -11,13 +13,16 @@
 
         protected VendaItem() { }
 
-        public VendaItem(int vendaId, int produtoId, string produtoDescricao, decimal preco, decimal desconto)
+        public static VendaItem Novo(AdicionarVendaItemRequest adicionarVendaItemRequest)
         {
-            VendaId = vendaId;
-            ProdutoId = produtoId;
-            ProdutoDescricao = produtoDescricao;
-            Preco = preco;
-            Desconto = desconto;
+            return new VendaItem
+            {
+                VendaId = adicionarVendaItemRequest.VendaId,
+                ProdutoId = adicionarVendaItemRequest.ProdutoId,
+                ProdutoDescricao = adicionarVendaItemRequest.ProdutoDescricao,
+                Preco = adicionarVendaItemRequest.Preco,
+                Desconto = adicionarVendaItemRequest.Desconto
+            };
         }
 
         public void AtualizarPreco(decimal preco)

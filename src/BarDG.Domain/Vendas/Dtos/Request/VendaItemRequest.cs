@@ -11,6 +11,7 @@ namespace BarDG.Domain.Vendas.Dtos.Request
         public string Comanda { get; set; }
         public int VendaId { get; set; }
         public int ProdutoId { get; set; }
+        public string ProdutoDescricao { get; set; }
         public ProdutoTipo ProdutoTipo { get; set; }
         public decimal Preco { get; set; }
         public decimal Desconto { get; set; }
@@ -22,6 +23,7 @@ namespace BarDG.Domain.Vendas.Dtos.Request
             contract.IsNull(Comanda, nameof(Comanda), string.Format(Traducao.Campo_Obrigatorio, nameof(Comanda)));
             contract.IsNull(VendaId, nameof(VendaId), string.Format(Traducao.Campo_Obrigatorio, nameof(VendaId)));
             contract.IsNull(ProdutoId, nameof(ProdutoId), string.Format(Traducao.Campo_Obrigatorio, nameof(ProdutoId)));
+            contract.IsNull(ProdutoDescricao, nameof(ProdutoDescricao), string.Format(Traducao.Campo_Obrigatorio, nameof(ProdutoDescricao)));
             contract.IsNull(ProdutoTipo, nameof(ProdutoTipo), string.Format(Traducao.Campo_Obrigatorio, nameof(ProdutoTipo)));
 
             AddNotifications(contract);
