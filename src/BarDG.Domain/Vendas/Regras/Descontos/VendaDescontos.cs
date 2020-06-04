@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BarDG.Domain.Vendas.Regras.Descontos
 {
-    internal class VendaDescontos : IVendaDescontos
+    public class VendaDescontos : IVendaDescontos
     {
         private List<IItemDesconto> descontos;
 

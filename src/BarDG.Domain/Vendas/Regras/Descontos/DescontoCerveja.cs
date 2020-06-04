@@ -21,7 +21,7 @@ namespace BarDG.Domain.Vendas.Regras.Descontos
             var cerveja = itens.FirstOrDefault(i => i.ProdutoTipo == ProdutoTipo.Cerveja);
             if(cerveja != null)
             {
-                cerveja.Preco = 3;
+                cerveja.ProdutoPreco = 3;
             }
         }
     }

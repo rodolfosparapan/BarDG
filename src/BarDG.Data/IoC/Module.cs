@@ -1,6 +1,7 @@
 ﻿using BarDG.Data.Repositories;
 using BarDG.Data.UoW;
 using BarDG.Domain.Common.Interfaces;
+using BarDG.Domain.Produtos.Interfaces;
 using BarDG.Domain.Usuarios.Interfaces;
 using BarDG.Domain.Vendas.Interfaces;
 using System;
@@ -18,6 +19,7 @@ namespace BarDG.Data.IoC
                 { typeof(IVendaRepository), typeof(VendaRepository) },
                 { typeof(IVendaItemRepository), typeof(VendaItemRepository) },
                 { typeof(IUsuarioRepository), typeof(UsuarioRepository) },
+                { typeof(IProdutoRepository), typeof(ProdutoRepository) },
             };
 
             return result;

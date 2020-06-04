@@ -7,13 +7,15 @@ using System.Linq;
 
 namespace BBarDG.Domain.Vendas.Regras.Limites
 {
-    internal class VendaLimites : IVendaLimites
+    public class VendaLimites : IVendaLimites
     {
-        private List<IItemLimite> itemLimites;
-        private List<Notification> notificacoes;
+        private readonly List<IItemLimite> itemLimites;
+        private readonly List<Notification> notificacoes;
 
         public VendaLimites()
         {
+            notificacoes = new List<Notification>();
+
             itemLimites = new List<IItemLimite>
             {
                 new LimiteSucos()

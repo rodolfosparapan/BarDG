@@ -8,6 +8,6 @@ namespace BarDG.Domain.Produtos.Entities
         public string Codigo { get; set; }
         public string Descricao { get; set; }
         public decimal Preco { get; set; }
-        public ProdutoTipo ProdutoTipo { get; set; }
+        public ProdutoTipo Tipo { get; set; }
     }
 }

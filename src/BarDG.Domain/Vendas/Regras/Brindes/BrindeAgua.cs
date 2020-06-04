@@ -1,7 +1,6 @@
 ﻿using BarDG.Domain.Produtos.Enums;
 using BarDG.Domain.Produtos.Interfaces;
 using BarDG.Domain.Vendas.Dtos;
-using BarDG.Domain.Vendas.Entities;
 using BarDG.Domain.Vendas.Regras.Brindes.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,11 +25,17 @@ namespace BarDG.Domain.Vendas.Regras.Brindes
             return conhaques == 3 && cervejas == 2;
         }
 
-        public VendaItem Obter()
+        public ComandaItemDto Obter()
         {
             var produtoBrinde = produtoRepository.ObterPorCodigo(codigoProdutoBrinde);
-            
-            return new VendaItem(vendaId: 0, produtoBrinde.Id, produtoBrinde.Descricao, produtoBrinde.Preco, desconto: 0);
+
+            return new ComandaItemDto
+            {
+                ProdutoId = produtoBrinde.Id,
+                ProdutoDescricao = produtoBrinde.Descricao,
+                ProdutoPreco = produtoBrinde.Preco,
+                ProdutoTipo = produtoBrinde.Tipo
+            };
         }
     }
 }

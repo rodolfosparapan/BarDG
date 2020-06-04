@@ -25,10 +25,10 @@ namespace BarDG.Data.EFConfiguration.Seeds
         {
             return new Produto[]
             {
-                new Produto { Descricao = "Cerveja", Preco = 5, ProdutoTipo = ProdutoTipo.Cerveja },
-                new Produto { Descricao = "Conhaque", Preco = 20, ProdutoTipo = ProdutoTipo.Conhaque },
-                new Produto { Descricao = "Suco", Preco = 50, ProdutoTipo = ProdutoTipo.Suco },
-                new Produto { Descricao = "Água", Preco = 70, ProdutoTipo = ProdutoTipo.Agua }
+                new Produto { Descricao = "Cerveja", Preco = 5, Tipo = ProdutoTipo.Cerveja },
+                new Produto { Descricao = "Conhaque", Preco = 20, Tipo = ProdutoTipo.Conhaque },
+                new Produto { Descricao = "Suco", Preco = 50, Tipo = ProdutoTipo.Suco },
+                new Produto { Descricao = "Água", Preco = 70, Tipo = ProdutoTipo.Agua }
             };
         }
     }

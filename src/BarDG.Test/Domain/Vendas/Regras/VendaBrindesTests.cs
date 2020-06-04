@@ -1,43 +1,53 @@
-﻿using BarDG.Domain.Produtos.Enums;
+﻿using BarDG.Domain.Produtos.Entities;
+using BarDG.Domain.Produtos.Enums;
+using BarDG.Domain.Produtos.Interfaces;
 using BarDG.Domain.Vendas.Dtos;
-using BBarDG.Domain.Vendas.Regras.Limites;
+using BarDG.Domain.Vendas.Regras.Brindes;
+using NSubstitute;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace BarDG.Test.Domain.Vendas.Regras
 {
-    public class VendaLimitesTests
+    public class VendaBrindesTests
     {
-        private VendaLimites vendaLimites;
+        private const string codigoProdutoBrinde = "001";
+        private IProdutoRepository produtoRepository;
+        private VendaBrindes vendaBrindes;
 
-        public VendaLimitesTests()
+        public VendaBrindesTests()
         {
-            vendaLimites = new VendaLimites();
+            produtoRepository = Substitute.For<IProdutoRepository>();
+            vendaBrindes = new VendaBrindes(produtoRepository);
         }
 
         [Fact]
-        public void Deve_Retornar_Mensagem_De_Limite_Caso_Comanda_Tenha_Mais_De_3_Sucos()
+        public void Deve_Inserir_Brinde_Agua_Caso_Comanda_Tenha_3Conhaques_E_2Cervejas()
         {
+            produtoRepository.ObterPorCodigo(codigoProdutoBrinde).Returns(new Produto { 
+                Tipo = ProdutoTipo.Agua
+            });
+
             var itens = new List<ComandaItemDto>()
             {
-                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco },
-                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco },
-                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco },
-                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco }
+                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque },
+                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque },
+                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque },
+                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja },
+                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja }
             };
 
-            vendaLimites.Analisar(itens);
-
-            Assert.NotEmpty(vendaLimites.ListarMensagens());
+            var brindes = vendaBrindes.Listar(itens);
+            Assert.Contains(ProdutoTipo.Agua, brindes.Select(b => b.ProdutoTipo));
         }
 
         [Theory]
         [MemberData(nameof(ComandaItensData))]
-        public void Nao_Deve_Retornar_Mesagem_De_Limite_Caso_Comanda_Nao_Tenha_Combinacoes_De_Limite_De_Itens(IEnumerable<ComandaItemDto> itens)
+        public void Nao_Deve_Inserir_Brinde_Caso_Comanda_Tenha_Itens_Que_Nao_Disponibilizam_Brindes(IEnumerable<ComandaItemDto> itens)
         {
-            vendaLimites.Analisar(itens);
-
-            Assert.Empty(vendaLimites.ListarMensagens());
+            var brindes = vendaBrindes.Listar(itens);
+            Assert.False(brindes.Any());
         }
 
         public static IEnumerable<object[]> ComandaItensData =>
@@ -68,8 +78,6 @@ namespace BarDG.Test.Domain.Vendas.Regras
                         new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja },
                         new ComandaItemDto { ProdutoTipo = ProdutoTipo.Agua },
                         new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco }
                     }
                 },
                 new object[]
@@ -83,5 +91,6 @@ namespace BarDG.Test.Domain.Vendas.Regras
                     }
                 },
             };
+        
     }
 }

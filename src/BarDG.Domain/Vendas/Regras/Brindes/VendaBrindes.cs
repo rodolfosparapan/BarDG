@@ -1,6 +1,5 @@
 ﻿using BarDG.Domain.Produtos.Interfaces;
 using BarDG.Domain.Vendas.Dtos;
-using BarDG.Domain.Vendas.Entities;
 using BarDG.Domain.Vendas.Regras.Brindes.Interfaces;
 using System.Collections.Generic;
 
@@ -18,9 +17,9 @@ namespace BarDG.Domain.Vendas.Regras.Brindes
             };
         }
 
-        public IEnumerable<VendaItem> Listar(IEnumerable<ComandaItemDto> itens)
+        public IEnumerable<ComandaItemDto> Listar(IEnumerable<ComandaItemDto> itens)
         {    
-            var produtoBrindes = new List<VendaItem>();
+            var produtoBrindes = new List<ComandaItemDto>();
             
             foreach(var brinde in brindes)
             {
