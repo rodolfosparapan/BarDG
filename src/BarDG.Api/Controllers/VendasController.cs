@@ -37,5 +37,17 @@ namespace BarDG.Api.Controllers
             var sucesso = service.Resetar(vendaId);
             return Response(sucesso);
         }
+
+        [HttpGet("comanda")]
+        public IActionResult Listar([FromQuery] int vendaId)
+        {
+            return Response(service.Listar(vendaId));
+        }
+
+        [HttpGet]
+        public IActionResult Obter([FromQuery] int vendaId)
+        {
+            return Response(service.Obter(vendaId));
+        }
     }
 }

@@ -5,10 +5,10 @@ app.controller("LoginCtrl", function($scope, $location, session, usuariosApi) {
         usuariosApi.login($scope.dadosLogin).then(function(response){                   
                 session.usuario = response.data.email,
                 session.token = response.data.token;
-                $location.path('/home');
+                $location.path('home');
             },
-            function(error){
-                $scope.errorMessage = "Ocorreu um erro ao realizar o login:" + error
+            function(erro){
+                alert(erro.data);
             }
         );
     };

@@ -21,8 +21,8 @@ namespace BarDG.Test.Domain.Vendas.Regras
         {
             var itens = new List<ComandaItemDto>()
             {
-                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, ProdutoPreco = 10 },
-                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco, ProdutoPreco = 10 },
+                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, ProdutoPreco = 10, Quantidade = 1 },
+                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco, ProdutoPreco = 10, Quantidade = 1 },
             };
 
             vendaDescontos.Aplicar(itens);
@@ -46,38 +46,35 @@ namespace BarDG.Test.Domain.Vendas.Regras
                 {
                     new List<ComandaItemDto>
                     {
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, ProdutoPreco = 10 },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, ProdutoPreco = 10 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, ProdutoPreco = 10, Quantidade = 1 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, ProdutoPreco = 10, Quantidade = 1 },
                     }
                 },
                 new object[]
                 {
                     new List<ComandaItemDto>
                     {
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, ProdutoPreco = 10 },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, ProdutoPreco = 10 },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Agua, ProdutoPreco = 10 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, ProdutoPreco = 10, Quantidade = 1 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, ProdutoPreco = 10, Quantidade = 1},
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Agua, ProdutoPreco = 10, Quantidade = 1 },
                     }
                 },
                 new object[]
                 {
                     new List<ComandaItemDto>
                     {
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, ProdutoPreco = 10 },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, ProdutoPreco = 10 },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Agua, ProdutoPreco = 10 },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco, ProdutoPreco = 10 },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco, ProdutoPreco = 10 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, ProdutoPreco = 10, Quantidade = 1 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, ProdutoPreco = 10, Quantidade = 1 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Agua, ProdutoPreco = 10, Quantidade = 1 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco, ProdutoPreco = 10, Quantidade = 2 },
                     }
                 },
                 new object[]
                 {
                     new List<ComandaItemDto>
                     {
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, ProdutoPreco = 10 },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, ProdutoPreco = 10 },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, ProdutoPreco = 10 },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, ProdutoPreco = 10 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, ProdutoPreco = 10, Quantidade = 2 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, ProdutoPreco = 10, Quantidade = 2 },
                     }
                 },
             };

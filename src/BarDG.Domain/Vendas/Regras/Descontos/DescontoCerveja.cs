@@ -1,5 +1,6 @@
 ﻿using BarDG.Domain.Produtos.Enums;
 using BarDG.Domain.Vendas.Dtos;
+using BarDG.Domain.Vendas.Enums;
 using BarDG.Domain.Vendas.Regras.Descontos.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace BarDG.Domain.Vendas.Regras.Descontos
     {
         public bool Analisar(IEnumerable<ComandaItemDto> itens)
         {
-            var totalCervejas = itens.Count(i => i.ProdutoTipo == ProdutoTipo.Cerveja);
-            var totalSucos = itens.Count(i => i.ProdutoTipo == ProdutoTipo.Suco);
+            var totalCervejas = itens.Where(i => i.ProdutoTipo == ProdutoTipo.Cerveja).Sum(i => i.Quantidade);
+            var totalSucos = itens.Where(i => i.ProdutoTipo == ProdutoTipo.Suco).Sum(i => i.Quantidade);
 
             return totalCervejas == 1 && totalSucos == 1;
         }
@@ -22,6 +23,7 @@ namespace BarDG.Domain.Vendas.Regras.Descontos
             if(cerveja != null)
             {
                 cerveja.ProdutoPreco = 3;
+                cerveja.State = Tracking.Modified;
             }
         }
     }

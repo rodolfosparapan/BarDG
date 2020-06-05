@@ -12,7 +12,7 @@ namespace BarDG.Domain.Vendas.Regras.Limites
         public bool Analisar(IEnumerable<ComandaItemDto> itens)
         {
             var maximoSucos = 3;
-            return itens.Count(i => i.ProdutoTipo == ProdutoTipo.Suco) > maximoSucos;
+            return itens.Where(i => i.ProdutoTipo == ProdutoTipo.Suco).Sum(i => i.Quantidade) > maximoSucos;
         }
 
         public Notification ObterNotificacao()

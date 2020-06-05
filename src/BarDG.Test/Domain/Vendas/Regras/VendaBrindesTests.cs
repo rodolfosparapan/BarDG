@@ -12,7 +12,7 @@ namespace BarDG.Test.Domain.Vendas.Regras
 {
     public class VendaBrindesTests
     {
-        private const string codigoProdutoBrinde = "001";
+        private const string codigoProdutoBrinde = "004";
         private IProdutoRepository produtoRepository;
         private VendaBrindes vendaBrindes;
 
@@ -31,11 +31,8 @@ namespace BarDG.Test.Domain.Vendas.Regras
 
             var itens = new List<ComandaItemDto>()
             {
-                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque },
-                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque },
-                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque },
-                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja },
-                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja }
+                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, Quantidade = 3 },
+                new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, Quantidade = 2 },
             };
 
             var brindes = vendaBrindes.Listar(itens);
@@ -57,36 +54,35 @@ namespace BarDG.Test.Domain.Vendas.Regras
                 {
                     new List<ComandaItemDto>
                     {
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, Quantidade = 1 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, Quantidade = 1 },
                     }
                 },
                 new object[]
                 {
                     new List<ComandaItemDto>
                     {
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Agua },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, Quantidade = 1 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, Quantidade = 1 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Agua, Quantidade = 1 },
                     }
                 },
                 new object[]
                 {
                     new List<ComandaItemDto>
                     {
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Agua },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, Quantidade = 1 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, Quantidade = 1 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Agua, Quantidade = 1 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Suco, Quantidade = 1 },
                     }
                 },
                 new object[]
                 {
                     new List<ComandaItemDto>
                     {
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, Quantidade = 2 },
+                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, Quantidade = 2 },
                         new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja },
                     }
                 },

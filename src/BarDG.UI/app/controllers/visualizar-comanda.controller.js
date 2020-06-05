@@ -1,28 +1,39 @@
-app.controller("ResultadosCtrl", function($scope, jogoBasqueteApi) {
-    $scope.title = "Resultados";
-    $scope.alertMessage = "";
-    $scope.errorMessage = "";
-    $scope.resultados = {};
+app.controller("VisualizarComandaCtrl", function($scope, $location, vendasApi, session) {
+    
+    $scope.numeroComanda = session.vendaId > 0 ? session.vendaId.toString().padStart(4,'0') : '(Nova)';
+    carregarComanda();
 
-    carregarResultados();
-
-    function carregarResultados() {
-        jogoBasqueteApi.getResultados().then(
+    function carregarComanda() {
+        vendasApi.obterComanda(session.vendaId).then(
             function(response) {
-                $scope.resultados = response.data.data;
-
-                if (response.data.data.totalJogos === 0) {
-                    $scope.alertMessage =
-                        "Não existem jogos cadastrados até o momento! Cadastre uma nova pontuação para visualizar.";
-                }
-
-                if (!response.data.isSuccess) {
-                    $scope.errorMessage = response.data.message;
-                }
+                $scope.comandaItens = response.data;
             },
-            function(error) {
-                $scope.errorMessage = "Não foi possível carregar os resultados.";
-                console.log(error); //Apenas para fins de teste.
+            function(erro) {
+                alertify.alert(erro.data);
+            }
+        );
+    }
+
+    $scope.limparComanda = function(){
+        vendasApi.resetarComanda(session.vendaId).then(
+            function(response) {
+                alertify.alert("Comanda Reiniciada!");
+                $location.path('adicionar-item');
+            },
+            function(erro) {
+                alertify.alert(erro.data);
+            }
+        );
+    }
+
+    $scope.finalizarComanda = function(){
+        vendasApi.finalizarComanda(session.vendaId).then(
+            function(response) {
+                alertify.alert("Comanda finalizada com sucesso!");
+                $location.path('home');
+            },
+            function(erro) {
+                alertify.alert(erro.data);
             }
         );
     }

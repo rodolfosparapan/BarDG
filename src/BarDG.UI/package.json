@@ -10,9 +10,12 @@
   "author": "Rodolfo Sparapan",
   "license": "ISC",
   "dependencies": {
+    "alertifyjs": "^1.13.1",
     "angular": "^1.7.9",
     "angular-route": "^1.7.9",
     "bootstrap": "^4.4.1",
-    "http-server": "^0.12.1"
+    "http-server": "^0.12.1",
+    "jquery": "^3.5.1",
+    "popper.js": "1.16.0"
   }
 }

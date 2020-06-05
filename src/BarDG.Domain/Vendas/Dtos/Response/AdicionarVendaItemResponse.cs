@@ -5,7 +5,7 @@ namespace BarDG.Domain.Vendas.Dtos.Response
 {
     public class AdicionarVendaItemResponse
     {
-        public VendaItem ItemAdicionado { get; set; }
+        public int VendaId { get; set; }
         public IEnumerable<ComandaItemDto> Brindes { get; set; }        
     }
 }

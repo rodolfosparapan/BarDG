@@ -23,6 +23,14 @@ namespace BarDG.Api
 
             services.AddHealthChecks();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build();
+                });
+            });
+
             services.AddControllers();
 
             services.AddAuthSetup(configuration);
@@ -36,6 +44,8 @@ namespace BarDG.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("EnableCORS");
 
             app.UseHttpsRedirection();
 

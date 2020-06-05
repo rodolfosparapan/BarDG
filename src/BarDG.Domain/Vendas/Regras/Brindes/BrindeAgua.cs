@@ -9,7 +9,7 @@ namespace BarDG.Domain.Vendas.Regras.Brindes
 {
     internal class BrindeAgua : IItemBrinde
     {
-        private const string codigoProdutoBrinde = "001";
+        private const string codigoProdutoBrinde = "004";
         private readonly IProdutoRepository produtoRepository;
 
         public BrindeAgua(IProdutoRepository produtoRepository)
@@ -19,8 +19,8 @@ namespace BarDG.Domain.Vendas.Regras.Brindes
 
         public bool Analisar(IEnumerable<ComandaItemDto> itens)
         {
-            var conhaques = itens.Count(p => p.ProdutoTipo == ProdutoTipo.Conhaque);
-            var cervejas = itens.Count(p => p.ProdutoTipo == ProdutoTipo.Cerveja);
+            var conhaques = itens.Where(i => i.ProdutoTipo == ProdutoTipo.Conhaque).Sum(i => i.Quantidade);
+            var cervejas = itens.Where(i => i.ProdutoTipo == ProdutoTipo.Cerveja).Sum(i => i.Quantidade);
 
             return conhaques == 3 && cervejas == 2;
         }
@@ -32,6 +32,7 @@ namespace BarDG.Domain.Vendas.Regras.Brindes
             return new ComandaItemDto
             {
                 ProdutoId = produtoBrinde.Id,
+                Quantidade = 1,
                 ProdutoDescricao = produtoBrinde.Descricao,
                 ProdutoPreco = produtoBrinde.Preco,
                 ProdutoTipo = produtoBrinde.Tipo

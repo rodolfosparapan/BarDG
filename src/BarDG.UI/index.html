@@ -6,14 +6,15 @@
 
         <title>BarDG</title>
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="node_modules/alertifyjs/build/css/alertify.min.css" />
+        <link rel="stylesheet" href="node_modules/alertifyjs/build/css/themes/bootstrap.min.css" />        
         <link rel="stylesheet" href="app/css/index.css" />        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+        
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="node_modules/angular-route/angular-route.min.js"></script>
+        <script src="node_modules/alertifyjs/build/alertify.min.js"></script>
+        
         <script src="app/app.js"></script>
         <script src="app/controllers/home.controller.js"></script>
         <script src="app/controllers/login.controller.js"></script>
@@ -29,8 +30,8 @@
     <body ng-app="app" ng-controller="RootController">
         <nav class="navbar navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#/home"> BarDG </a>
-                <a ng-click="logout()">Sair</a>
+                <a class="navbar-brand" href="#!/home"> BarDG </a>
+                <button class="btn btn-light" ng-click="logout()">Sair</button>
             </div>
         </nav>
         <main>
@@ -38,12 +39,17 @@
                 <div class="col-md-2 menu" ng-ig>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item list-group-item-action">
-                            <a href="#/adicionar-item">
+                            <a href="#!/home">
+                                Início
+                            </a>
+                        </li>
+                        <li class="list-group-item list-group-item-action">
+                            <a href="#!/adicionar-item">
                                 Lançar Itens
                             </a>
                         </li>
                         <li class="list-group-item list-group-item-action">
-                            <a href="#/visualizar-comanda">
+                            <a href="#!/visualizar-comanda">
                                 Visualizar Comanda
                             </a>
                         </li>
@@ -58,7 +64,7 @@
         </main>
         <footer class="bg-dark">
             <p class="text-footer">
-                2020
+                2020 - Rodolfo
             </p>
         </footer>
     </body>

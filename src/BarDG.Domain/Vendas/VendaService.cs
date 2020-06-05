@@ -1,9 +1,11 @@
 ﻿using BarDG.Domain.Common;
 using BarDG.Domain.Common.Interfaces;
+using BarDG.Domain.Produtos.Interfaces;
 using BarDG.Domain.Vendas.Dtos;
 using BarDG.Domain.Vendas.Dtos.Request;
 using BarDG.Domain.Vendas.Dtos.Response;
 using BarDG.Domain.Vendas.Entities;
+using BarDG.Domain.Vendas.Enums;
 using BarDG.Domain.Vendas.Interfaces;
 using BarDG.Domain.Vendas.Regras;
 using System.Collections.Generic;
@@ -16,17 +18,20 @@ namespace BarDG.Domain.Vendas
         private readonly IUnitOfWork unitOfWork;
         private readonly IVendaRepository vendaRepository;
         private readonly IVendaItemRepository vendaItemRepository;
+        private readonly IProdutoRepository produtoRepository;
         private readonly IVendaRegras vendaRegras;
 
         public VendaService(
             IUnitOfWork unitOfWork,
             IVendaRepository vendaRepository, 
             IVendaItemRepository vendaItemRepository,
+            IProdutoRepository produtoRepository,
             IVendaRegras vendaRegras)
         {
             this.unitOfWork = unitOfWork;
             this.vendaRepository = vendaRepository;
             this.vendaItemRepository = vendaItemRepository;
+            this.produtoRepository = produtoRepository;
             this.vendaRegras = vendaRegras;
         }
 
@@ -47,13 +52,23 @@ namespace BarDG.Domain.Vendas
 
             vendaRegras.Descontos.Aplicar(comandaItens);
 
-            VendaItem vendaItem = SalvarItem(vendaItemRequest);
+            SalvarItens(comandaItens, vendaItemRequest);
 
             return new AdicionarVendaItemResponse
             {
-                ItemAdicionado = vendaItem,
+                VendaId = comandaItens.First().VendaId,
                 Brindes = vendaRegras.Brindes.Listar(comandaItens)
             };
+        }
+
+        public IEnumerable<ComandaItemResponse> Listar(int vendaId)
+        {
+            return vendaItemRepository.ListarComandaItensResponse(vendaId);
+        }
+
+        public Venda Obter(int vendaId)
+        {
+            return vendaRepository.ObterPorId(vendaId);
         }
 
         public bool Finalizar(int vendaId)
@@ -88,24 +103,59 @@ namespace BarDG.Domain.Vendas
             venda.Resetar();
 
             vendaRepository.Atualizar(venda);
-            
+            vendaItemRepository.LimparItens(venda.Id);
             unitOfWork.Commit();
 
             return true;
         }
 
-        private VendaItem SalvarItem(AdicionarVendaItemRequest vendaItemRequest)
+        private void SalvarItens(IEnumerable<ComandaItemDto> itens, AdicionarVendaItemRequest vendaItemRequest)
         {
-            var vendaItem = VendaItem.Novo(vendaItemRequest);
-            vendaItemRepository.Inserir(vendaItem);
+            if(vendaItemRequest.VendaId == 0)
+            {
+                InserirVenda(itens);
+            }
+
+            var itensAtualizar = new List<VendaItem>();
+            foreach (var item in itens.Where(i => i.State == Tracking.Modified))
+            {
+                itensAtualizar.Add(VendaItem.Novo(item));
+            }
+
+            var itensInserir = new List<VendaItem>();
+            foreach (var item in itens.Where(i => i.State == Tracking.Inserted))
+            {
+                itensInserir.Add(VendaItem.Novo(item));
+            }
+
+            vendaItemRepository.Salvar(itensInserir, itensAtualizar);
+            
             unitOfWork.Commit();
-            return vendaItem;
+        }
+
+        private void InserirVenda(IEnumerable<ComandaItemDto> itens)
+        {
+            var venda = Venda.Nova();
+            vendaRepository.Inserir(venda);
+            unitOfWork.Commit();
+            itens.First().VendaId = venda.Id;
         }
 
         private IEnumerable<ComandaItemDto> ListarComandaItens(AdicionarVendaItemRequest vendaItemRequest)
         {
-            var comandaItens = vendaItemRepository.ListarComandaItens(vendaItemRequest.VendaId);
-            comandaItens.ToList().Add(ComandaItemDto.Novo(vendaItemRequest));
+            var comandaItens = vendaItemRepository.ListarComandaItens(vendaItemRequest.VendaId).ToList();
+            
+            var produto = produtoRepository.ObterPorId(vendaItemRequest.ProdutoId);
+            var itemExistente = comandaItens.FirstOrDefault(i => i.ProdutoId == vendaItemRequest.ProdutoId);
+            if (itemExistente == null)
+            {
+                comandaItens.Add(ComandaItemDto.Novo(vendaItemRequest, produto));
+            }
+            else
+            {
+                itemExistente.Atualizar(vendaItemRequest, produto);
+            }
+            
             return comandaItens;
         }
     }
