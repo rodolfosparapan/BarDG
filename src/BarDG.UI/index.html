@@ -21,19 +21,21 @@
         <script src="app/controllers/visualizar-comanda.controller.js"></script>
         <script src="app/routes/route.js"></script>
         <script src="app/services/vendas.service.js"></script>
-        <script src="app/configValue.js"></script>        
+        <script src="app/services/usuarios.service.js"></script>
+        <script src="app/services/produtos.service.js"></script>
+        <script src="app/configValue.js"></script> 
+        <script src="app/session.js"></script>        
     </head>
-    <body ng-app="app">
+    <body ng-app="app" ng-controller="RootController">
         <nav class="navbar navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#/home">
-                    BarDG
-                </a>
+                <a class="navbar-brand" href="#/home"> BarDG </a>
+                <a ng-click="logout()">Sair</a>
             </div>
         </nav>
         <main>
             <div class="row">
-                <div class="col-md-3 menu">
+                <div class="col-md-2 menu" ng-ig>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item list-group-item-action">
                             <a href="#/adicionar-item">
@@ -49,7 +51,7 @@
                     </ul>
                 </div>
 
-                <div class="col-md-9 main-content">
+                <div class="col-md-10 main-content">
                     <div ng-view></div>
                 </div>
             </div>

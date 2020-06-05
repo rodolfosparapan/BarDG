@@ -1,17 +1,11 @@
-app.controller("LancamentoCtrl", function($scope, jogoBasqueteApi) {
-    $scope.title = "Lançar Pontos";
-    $scope.lancamento = {};
+app.controller("AdicionarItemCtrl", function($scope, vendasApi, produtosApi) {
+    
+    $scope.produtos = [];
     $scope.successMessage = '';
     $scope.errorMessage = '';
 
-    $scope.lancamento.DataJogo = new Date();
-    $scope.lancamento.QtdPontos = 0;
-
-    $scope.lancarPontos = function() {
-        jogoBasqueteApi.addJogo($scope.lancamento).then(
-            function(response){               
-                $scope.lancamento= {};
-
+    $scope.adicionarItem = function(produto) {
+        vendasApi.adicionarItem(produto).then(function(response){
                 if (response.data.isSuccess) {
                     $scope.successMessage = "Novo lançamento de pontos realizado com sucesso!";
                 }
@@ -24,4 +18,14 @@ app.controller("LancamentoCtrl", function($scope, jogoBasqueteApi) {
             }
         );
     };
+
+    carregarProdutos();
+
+    function carregarProdutos() {
+        produtosApi.listar().then(
+            function(response) {
+                $scope.produtos = response.data;
+            }
+        );
+    }
 });

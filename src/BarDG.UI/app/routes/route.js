@@ -1,18 +1,27 @@
 app.config(function($routeProvider) {
+    
     $routeProvider
         .when("/", {
+            templateUrl: "app/views/login.html",
+            controller: "LoginCtrl"
+        })
+
+        .when("/home", {
             templateUrl: "app/views/home.html",
-            controller: "HomeCtrl"
+            controller: "HomeCtrl",
+            requireAuth: true
         })
 
         .when("/adicionar-item", {
             templateUrl: "app/views/adicionar-item.html",
-            controller: "AdicionarItemCtrl"
+            controller: "AdicionarItemCtrl",
+            requireAuth: true
         })
 
-        .when("/resultados", {
+        .when("/visualizar-comanda", {
             templateUrl: "app/views/visualizar-comanda.html",
-            controller: "VisualizarComandaCtrl"
+            controller: "VisualizarComandaCtrl",
+            requireAuth: true
         })
 
         .otherwise({ redirectTo: "/" });

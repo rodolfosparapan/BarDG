@@ -21,32 +21,21 @@ namespace BarDG.Api.Controllers
         public IActionResult RegistrarItem(AdicionarVendaItemRequest adicionarVendaItemRequest)
         {
             var retorno = service.AdicionarItem(adicionarVendaItemRequest);
-            if (retorno.ItemAdicionado != null)
-            {
-                return CreatedAtAction(nameof(adicionarVendaItemRequest), new { retorno.ItemAdicionado.Id }, adicionarVendaItemRequest);
-            }
-            
-            return BadRequest();
+            return Response(retorno);
         }
 
         [HttpPost("finalizar")]
         public IActionResult FecharComanda(int vendaId)
         {
             var sucesso = service.Finalizar(vendaId);
-            if (sucesso)
-                return Ok();
-            
-            return BadRequest();
+            return Response(sucesso);
         }
 
         [HttpPut("resetar")]
         public IActionResult ResetarComanda(int vendaId)
         {
             var sucesso = service.Resetar(vendaId);
-            if (sucesso)
-                return Ok();
-
-            return BadRequest();
+            return Response(sucesso);
         }
     }
 }
