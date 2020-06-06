@@ -5,24 +5,31 @@ BarDG
 
 ### Gerenciamento de comandas
 
-Gerenciamento de comandas
+Adicionar nova comanda ou recuperar comadas existentes:
+![alt text](https://github.com/rodolfosparapan/BarDG/blob/dev/src/BarDG.UI/app/assets/inserir-itens.png)
 
-Adicionar nova comenda ou recuperar comadas existentes:
-![alt text](http://url/to/img.png)
+### Adicionar itens
 
-Adicionar itens
+Inserir novos itens na comanda selecionada
+![alt text](https://github.com/rodolfosparapan/BarDG/blob/dev/src/BarDG.UI/app/assets/adicionar-itens.png)
 
-Visualizar comanda
+### Visualizar comanda
+
+Aberta
+![alt text](https://github.com/rodolfosparapan/BarDG/blob/dev/src/BarDG.UI/app/assets/visualizar-comanda-aberta.png)
+
+Fechada
+![alt text](https://github.com/rodolfosparapan/BarDG/blob/dev/src/BarDG.UI/app/assets/visualizar-comanda.png)
 
 ## Backend
 
-- Aplicação em camadas
-- WebApi padrão REST
 - AspNetCore 3.1
+- Entity Framework Core
 - Autenticação JWT
 - Injeção de Dependência
+- Arquitetura em camadas
+- WebApi padrão REST
 - Swagger
-- Entity Framework Core
 
 ## FrontEnd
 
