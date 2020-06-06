@@ -1,0 +1,39 @@
+
+<div ng-include src="'app/views/includes/comanda-cabecalho.inc.html'"></div>
+    
+<h5>Adicionar Item</h5>
+
+<div class="row" ng-if="statusVenda == 1">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Produto</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Quantidade</th>
+                <th scope="col">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="produto in produtos">
+                <th scope="col">{{produto.id}}</th>
+                <td>{{produto.descricao}}</td>
+                <td>{{produto.preco | currency:'R$ '}}</td>
+                <td style="width:100px">
+                    <div class="input-group input-group-sm">
+                        <input type="number" class="form-control" ng-model="produto.quantidade" ng-init="produto.quantidade=1" required/>
+                    </div>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="adicionarItem(produto)">Adicionar</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div ng-if="statusVenda == 2">
+    <div class="alert alert-warning" role="alert">Comanda fechada. Não é possível inserir mais itens!</div>
+</div>

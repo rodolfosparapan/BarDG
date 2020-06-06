@@ -1,0 +1,47 @@
+<div ng-include src="'app/views/includes/comanda-cabecalho.inc.html'"></div>
+
+<div ng-if="comandaItens.length">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th>Desconto</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in comandaItens">
+                <td>
+                    {{item.produtoDescricao}} 
+                    <span class="badge badge-primary" ng-if="item.brinde">Brinde</span>
+                </td>
+                <td>{{item.quantidade}}</td>
+                <td>{{item.produtoPreco | currency:'R$ '}}</td>
+                <td>{{item.produtoDesconto | currency:'R$ '}}</td>
+                <td>{{item.total | currency:'R$ '}}</td>
+            </tr>
+            <tr>
+                <th colspan="4">Valor Compra</th>
+                <th>{{comandaTotal | currency:'R$ '}}</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <div ng-if="statusVenda == 1" class="row">
+        <div class="col-md-3">
+            <button type="button" class="btn btn-warning btn-block" ng-click="limparComanda()">Limpar Comanda</button>
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-success btn-block" ng-click="finalizarComanda()">Finalizar Comanda</button>
+        </div>
+    </div>
+</div>
+
+<div ng-if="!comandaItens.length">
+    <div class="alert alert-warning" role="alert">
+        Comanda vazia!
+    </div>
+</div>

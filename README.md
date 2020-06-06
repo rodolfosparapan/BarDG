@@ -1,11 +1,11 @@
 # BarDG
-Avaliação Técnica Clear Sale - Junho 2020
+AvaliaÃ§Ã£o TÃ©cnica Clear Sale - Junho 2020
 
 ## Usabilidade
 
 ### 1. Login
 
-Usuário de teste: caixa@bardg.com, senha:123456
+UsuÃ¡rio de teste: caixa@bardg.com, senha:123456
 
 ![alt text](https://github.com/rodolfosparapan/BarDG/blob/dev/src/BarDG.UI/app/assets/login.png)
 
@@ -23,11 +23,11 @@ Inserir novos itens na comanda selecionada:
 
 ### 4. Visualizar comanda
 
-Com a comanda aberta aberta é possível resetar ou finalizar a comanda:
+Com a comanda aberta aberta Ã© possÃ­vel resetar ou finalizar a comanda:
 
 ![alt text](https://github.com/rodolfosparapan/BarDG/blob/dev/src/BarDG.UI/app/assets/visualizar-comanda-aberta.png)
 
-Com a comanda fechada é possível apenas visualizar a comanda:
+Com a comanda fechada Ã© possÃ­vel apenas visualizar a comanda:
 
 ![alt text](https://github.com/rodolfosparapan/BarDG/blob/dev/src/BarDG.UI/app/assets/visualizar-comanda.png)
 
@@ -35,10 +35,10 @@ Com a comanda fechada é possível apenas visualizar a comanda:
 
 - AspNetCore 3.1
 - Entity Framework Core
-- Autenticação JWT
-- Injeção de Dependência
+- AutenticaÃ§Ã£o JWT
+- InjeÃ§Ã£o de DependÃªncia
 - Arquitetura em camadas
-- WebApi padrão REST
+- WebApi padrÃ£o REST
 - Swagger
 - Health Checks
 - Testes de Unidade
@@ -51,11 +51,11 @@ Com a comanda fechada é possível apenas visualizar a comanda:
 ## Pontos de Melhoria
 
 ### Funcional
-- Implementação da geração e página da nota fiscal
+- ImplementaÃ§Ã£o da geraÃ§Ã£o e pÃ¡gina da nota fiscal
 
-### Técnico
-- Poderia ser desenvolvido em microserviço específico para as operações fiscais e utilizar mensageria para comunição.
-- Interceptor no frontEnd para identificar requisições sem permissão
+### TÃ©cnico
+- Poderia ser desenvolvido em microserviÃ§o especÃ­fico para as operaÃ§Ãµes fiscais e utilizar mensageria para comuniÃ§Ã£o.
+- Interceptor no frontEnd para identificar requisiÃ§Ãµes sem permissÃ£o
 - Refresh token
 
 ### Desenvolvido por

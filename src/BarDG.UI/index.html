@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+        <title>BarDG</title>
+
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="node_modules/alertifyjs/build/css/alertify.min.css" />
+        <link rel="stylesheet" href="node_modules/alertifyjs/build/css/themes/bootstrap.min.css" />        
+        <link rel="stylesheet" href="app/css/index.css" />        
+        
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script src="node_modules/angular-route/angular-route.min.js"></script>
+        <script src="node_modules/alertifyjs/build/alertify.min.js"></script>
+        
+        <script src="app/app.js"></script>
+        <script src="app/controllers/home.controller.js"></script>
+        <script src="app/controllers/login.controller.js"></script>
+        <script src="app/controllers/adicionar-item.controller.js"></script>
+        <script src="app/controllers/visualizar-comanda.controller.js"></script>
+        <script src="app/routes/route.js"></script>
+        <script src="app/services/vendas.service.js"></script>
+        <script src="app/services/usuarios.service.js"></script>
+        <script src="app/services/produtos.service.js"></script>
+        <script src="app/enums/venda-status.enum.js"></script>
+        <script src="app/configValue.js"></script> 
+        <script src="app/session.js"></script>        
+    </head>
+    <body ng-app="app" ng-controller="RootController">
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!/home"> BarDG </a>
+                <button class="btn btn-light" ng-click="logout()">Sair</button>
+            </div>
+        </nav>
+        <main>
+            <div class="row">
+                <div class="col-md-2 menu" ng-ig>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item list-group-item-action">
+                            <a href="#!/home">
+                                Início
+                            </a>
+                        </li>
+                        <li class="list-group-item list-group-item-action">
+                            <a href="#!/adicionar-item">
+                                Lançar Itens
+                            </a>
+                        </li>
+                        <li class="list-group-item list-group-item-action">
+                            <a href="#!/visualizar-comanda">
+                                Visualizar Comanda
+                            </a>
+                        </li>
+                        <li class="list-group-item"></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-10 main-content">
+                    <div ng-view></div>
+                </div>
+            </div>
+        </main>
+        <footer class="bg-dark">
+            <p class="text-footer">
+                2020 - Rodolfo
+            </p>
+        </footer>
+    </body>
+</html>
