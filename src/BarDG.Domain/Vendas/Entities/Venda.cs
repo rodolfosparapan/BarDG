@@ -10,17 +10,9 @@ namespace BarDG.Domain.Vendas.Entities
         public decimal ValorDesconto { get; private set; }
         public VendaStatus Status { get; private set; }
         public IEnumerable<VendaItem> Itens { get; set; }
+        public int NotaId { get; set; }
 
         protected Venda() { }
-
-        public Venda(int id, decimal valorTotal, decimal valorDesconto, VendaStatus status, IEnumerable<VendaItem> itens)
-        {
-            Id = id;
-            ValorTotal = valorTotal;
-            ValorDesconto = valorDesconto;
-            Status = status;
-            Itens = itens;
-        }
 
         public static Venda Nova()
         {
@@ -29,19 +21,14 @@ namespace BarDG.Domain.Vendas.Entities
             return venda;
         }
 
-        public void AdicionarItem(VendaItem novoItem)
-        {
-            //VendaRegras.Aplicar(Itens, novoItem);
-        }
-
         public void Finalizar()
         {
-            Status = VendaStatus.Finalizada;
+            Status = VendaStatus.Fechada;
         }
 
         public void Resetar()
         {
-            Status = VendaStatus.Orcamento;
+            Status = VendaStatus.Aberta;
             Itens = new List<VendaItem>();
         }
     }

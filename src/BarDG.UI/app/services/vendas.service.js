@@ -42,11 +42,20 @@ angular.module('app').factory('vendasApi', function ($http, config, session){
         });
     };
 
+    var _removerItem  = function (vendaItemId) {
+        return $http({
+            method: "DELETE",
+            url: config.baseUrl + "/vendas/removerItem",
+            params: { vendaItemId }
+        });
+    };
+
     return{
         adicionarItem: _adicionarItem,
         finalizarComanda: _finalizarComanda,
         resetarComanda: _resetarComanda,
         obterComanda: _obterComanda,
-        obter: _obter
+        obter: _obter,
+        removerItem: _removerItem
     };
 });

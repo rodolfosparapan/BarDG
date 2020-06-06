@@ -4,7 +4,7 @@
   "description": "Interface para o BarDG",
   "main": "app.js",
   "scripts": {
-    "start": "http-server -o",
+    "start": "http-server -a localhost -o",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rodolfo Sparapan",

@@ -24,6 +24,12 @@ namespace BarDG.Api.Controllers
             return Response(retorno);
         }
 
+        [HttpDelete("removerItem")]
+        public IActionResult RemoverItem(int vendaItemId)
+        {
+            return Response(service.RemoverItem(vendaItemId));
+        }
+
         [HttpPost("finalizar")]
         public IActionResult FecharComanda(int vendaId)
         {

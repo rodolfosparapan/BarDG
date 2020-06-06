@@ -2,8 +2,7 @@
 {
     public enum VendaStatus
     {
-        Orcamento = 1,
-        Pedido = 2,
-        Finalizada = 2,
+        Aberta = 1,
+        Fechada = 2
     }
 }

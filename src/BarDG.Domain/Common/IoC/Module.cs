@@ -1,4 +1,6 @@
-﻿using BarDG.Domain.Vendas;
+﻿using BarDG.Domain.Fiscal;
+using BarDG.Domain.Fiscal.Interfaces;
+using BarDG.Domain.Vendas;
 using BarDG.Domain.Vendas.Interfaces;
 using BarDG.Domain.Vendas.Regras;
 using System;
@@ -14,7 +16,7 @@ namespace BarDG.Domain.Common.IoC
             {
                 { typeof(IVendaService), typeof(VendaService) },
                 { typeof(IVendaRegras), typeof(VendaRegras) },
-                
+                { typeof(IFiscalService), typeof(FiscalService) }
             };
 
             return result;

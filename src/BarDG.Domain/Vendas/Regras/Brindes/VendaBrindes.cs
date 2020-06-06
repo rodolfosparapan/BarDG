@@ -17,19 +17,15 @@ namespace BarDG.Domain.Vendas.Regras.Brindes
             };
         }
 
-        public IEnumerable<ComandaItemDto> Listar(IEnumerable<ComandaItemDto> itens)
+        public void Adicionar(IList<ComandaItemDto> itens)
         {    
-            var produtoBrindes = new List<ComandaItemDto>();
-            
             foreach(var brinde in brindes)
             {
                 if(brinde.Analisar(itens))
                 {
-                    produtoBrindes.Add(brinde.Obter());
+                    brinde.Adicionar(itens);
                 }
             }
-
-            return produtoBrindes;
         }
     }
 }

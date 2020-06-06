@@ -35,19 +35,19 @@ namespace BarDG.Test.Domain.Vendas.Regras
                 new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, Quantidade = 2 },
             };
 
-            var brindes = vendaBrindes.Listar(itens);
-            Assert.Contains(ProdutoTipo.Agua, brindes.Select(b => b.ProdutoTipo));
+            vendaBrindes.Adicionar(itens);
+            Assert.Contains(ProdutoTipo.Agua, itens.Where(i => i.Brinde).Select(b => b.ProdutoTipo));
         }
 
         [Theory]
         [MemberData(nameof(ComandaItensData))]
-        public void Nao_Deve_Inserir_Brinde_Caso_Comanda_Tenha_Itens_Que_Nao_Disponibilizam_Brindes(IEnumerable<ComandaItemDto> itens)
+        public void Nao_Deve_Inserir_Brinde_Caso_Comanda_Tenha_Itens_Que_Nao_Disponibilizam_Brindes(IList<ComandaItemDto> itens)
         {
-            var brindes = vendaBrindes.Listar(itens);
-            Assert.False(brindes.Any());
+            vendaBrindes.Adicionar(itens);
+            Assert.False(itens.Any(i => i.Brinde));
         }
 
-        public static IEnumerable<object[]> ComandaItensData =>
+        public static IList<object[]> ComandaItensData =>
             new List<object[]>
             {
                 new object[]
@@ -83,7 +83,6 @@ namespace BarDG.Test.Domain.Vendas.Regras
                     {
                         new ComandaItemDto { ProdutoTipo = ProdutoTipo.Conhaque, Quantidade = 2 },
                         new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja, Quantidade = 2 },
-                        new ComandaItemDto { ProdutoTipo = ProdutoTipo.Cerveja },
                     }
                 },
             };

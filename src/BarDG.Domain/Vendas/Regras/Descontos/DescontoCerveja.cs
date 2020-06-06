@@ -14,7 +14,7 @@ namespace BarDG.Domain.Vendas.Regras.Descontos
             var totalCervejas = itens.Where(i => i.ProdutoTipo == ProdutoTipo.Cerveja).Sum(i => i.Quantidade);
             var totalSucos = itens.Where(i => i.ProdutoTipo == ProdutoTipo.Suco).Sum(i => i.Quantidade);
 
-            return totalCervejas == 1 && totalSucos == 1;
+            return totalCervejas >= 1 && totalSucos >= 1;
         }
 
         public void AplicarDesconto(IEnumerable<ComandaItemDto> itens)
@@ -22,7 +22,7 @@ namespace BarDG.Domain.Vendas.Regras.Descontos
             var cerveja = itens.FirstOrDefault(i => i.ProdutoTipo == ProdutoTipo.Cerveja);
             if(cerveja != null)
             {
-                cerveja.ProdutoPreco = 3;
+                cerveja.ProdutoDesconto = 2;
                 cerveja.State = Tracking.Modified;
             }
         }

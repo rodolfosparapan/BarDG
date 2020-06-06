@@ -1,0 +1,10 @@
+
+<div class="page-header">
+    <h3>Comanda <span class="text-primary">{{numeroComanda}}<span></h3>
+    <div class="badge badge-success" ng-if="statusVenda == vendaEnum.emAberto">
+        Em Aberto
+    </div>
+    <div class="badge badge-danger" ng-if="statusVenda == vendaEnum.fechada">
+        Fechada
+    </div>
+</div>

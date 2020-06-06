@@ -1,6 +1,4 @@
-<div class="page-header">
-    <h3>Comanda <span class="text-primary">{{numeroComanda}}<span></h3>
-</div>
+<div ng-include src="'app/views/includes/comanda-cabecalho.inc.html'"></div>
 
 <div ng-if="comandaItens.length">
     <table class="table table-striped">
@@ -10,21 +8,36 @@
                 <th>Quantidade</th>
                 <th>Preço</th>
                 <th>Desconto</th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="item in comandaItens">
-                <td>{{item.produtoDescricao}}</td>
+                <td>
+                    {{item.produtoDescricao}} 
+                    <span class="badge badge-primary" ng-if="item.brinde">Brinde</span>
+                </td>
                 <td>{{item.quantidade}}</td>
                 <td>{{item.produtoPreco | currency:'R$ '}}</td>
                 <td>{{item.produtoDesconto | currency:'R$ '}}</td>
+                <td>{{item.total | currency:'R$ '}}</td>
+            </tr>
+            <tr>
+                <th colspan="4">Valor Compra</th>
+                <th>{{comandaTotal | currency:'R$ '}}</th>
             </tr>
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-warning" ng-click="limparComanda()">Limpar Comanda</button>
-    <button type="button" class="btn btn-success" ng-click="finalizarComanda()">Finalizar Comanda</button>
-
+    <div ng-if="statusVenda == 1" class="row">
+        <div class="col-md-3">
+            <button type="button" class="btn btn-warning btn-block" ng-click="limparComanda()">Limpar Comanda</button>
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-success btn-block" ng-click="finalizarComanda()">Finalizar Comanda</button>
+        </div>
+    </div>
 </div>
 
 <div ng-if="!comandaItens.length">

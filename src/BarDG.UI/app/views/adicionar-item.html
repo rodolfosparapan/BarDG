@@ -1,10 +1,9 @@
-<div class="page-header">
-    <h3>Comanda <span class="text-primary">{{numeroComanda}}<span></h3>
-</div>
+
+<div ng-include src="'app/views/includes/comanda-cabecalho.inc.html'"></div>
     
 <h5>Adicionar Item</h5>
 
-<div class="row">
+<div class="row" ng-if="statusVenda == 1">
     <div class="col-md-12">
         <table class="table table-striped">
             <thead>
@@ -21,12 +20,20 @@
                 <th scope="col">{{produto.id}}</th>
                 <td>{{produto.descricao}}</td>
                 <td>{{produto.preco | currency:'R$ '}}</td>
-                <td><input type="number" class="form-control" ng-model="produto.quantidade" ng-init="produto.quantidade=1" required style="width:100px"/></td>
+                <td style="width:100px">
+                    <div class="input-group input-group-sm">
+                        <input type="number" class="form-control" ng-model="produto.quantidade" ng-init="produto.quantidade=1" required/>
+                    </div>
+                </td>
                 <td>
-                    <button type="button" class="btn btn-primary" ng-click="adicionarItem(produto)">Adicionar</button>
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="adicionarItem(produto)">Adicionar</button>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
+</div>
+
+<div ng-if="statusVenda == 2">
+    <div class="alert alert-warning" role="alert">Comanda fechada. Não é possível inserir mais itens!</div>
 </div>

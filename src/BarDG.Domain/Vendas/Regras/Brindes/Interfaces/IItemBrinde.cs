@@ -6,6 +6,6 @@ namespace BarDG.Domain.Vendas.Regras.Brindes.Interfaces
     public interface IItemBrinde
     {
         bool Analisar(IEnumerable<ComandaItemDto> itens);
-        ComandaItemDto Obter();
+        void Adicionar(IList<ComandaItemDto> itens);
     }
 }

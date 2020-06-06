@@ -11,6 +11,7 @@ namespace BarDG.Domain.Vendas.Entities
         public string ProdutoDescricao { get; private set; }
         public decimal Preco { get; private set; }
         public decimal Desconto { get; private set; }
+        public bool Brinde { get; set; }
 
         protected VendaItem() { }
 
@@ -24,7 +25,8 @@ namespace BarDG.Domain.Vendas.Entities
                 Quantidade = comandaItem.Quantidade,
                 ProdutoDescricao = comandaItem.ProdutoDescricao,
                 Preco = comandaItem.ProdutoPreco,
-                Desconto = comandaItem.ProdutoDesconto
+                Desconto = comandaItem.ProdutoDesconto,
+                Brinde = comandaItem.Brinde
             };
         }
     }

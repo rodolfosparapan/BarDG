@@ -27,7 +27,7 @@ namespace BarDG.Test.Domain.Vendas.Regras
 
             vendaDescontos.Aplicar(itens);
 
-            Assert.Equal(3, itens.First(i => i.ProdutoTipo == ProdutoTipo.Cerveja).ProdutoPreco);
+            Assert.Equal(2, itens.First(i => i.ProdutoTipo == ProdutoTipo.Cerveja).ProdutoDesconto);
         }
 
         [Theory]

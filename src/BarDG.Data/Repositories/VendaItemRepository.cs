@@ -34,7 +34,9 @@ namespace BarDG.Data.Repositories
                     ProdutoDescricao = vendaItem.ProdutoDescricao,
                     ProdutoId = vendaItem.ProdutoId,
                     ProdutoPreco = vendaItem.Preco,
-                    ProdutoTipo = produto.Tipo
+                    ProdutoTipo = produto.Tipo,
+                    Brinde = vendaItem.Brinde,
+                    ProdutoCodigo = produto.Codigo
                 };
         }
 
@@ -46,7 +48,8 @@ namespace BarDG.Data.Repositories
                 Quantidade = vi.Quantidade,
                 ProdutoDescricao = vi.ProdutoDescricao,
                 ProdutoPreco = vi.Preco,
-                ProdutoDesconto = vi.Desconto
+                ProdutoDesconto = vi.Desconto,
+                Brinde = vi.Brinde
             });
         }
 

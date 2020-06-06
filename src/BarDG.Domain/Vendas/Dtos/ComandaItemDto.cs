@@ -15,7 +15,9 @@ namespace BarDG.Domain.Vendas.Dtos
         public ProdutoTipo ProdutoTipo { get; set; }
         public decimal ProdutoPreco { get; set; }
         public decimal ProdutoDesconto { get; set; }
+        public bool Brinde { get; set; }
         public Tracking State { get; set; }
+        public string ProdutoCodigo { get; set; }
 
         public static ComandaItemDto Novo(AdicionarVendaItemRequest request, Produto produto)
         {
