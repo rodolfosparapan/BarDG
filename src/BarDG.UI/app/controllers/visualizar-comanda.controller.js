@@ -10,13 +10,21 @@ app.controller("VisualizarComandaCtrl", function($scope, $location, vendasApi, s
             function(response) {
                 if(response.data.length){
                     $scope.comandaItens = response.data;
-                    $scope.comandaTotal = response.data.reduce((a, b) => a.total + b.total);
+                    calcularTotal(response.data);
                 }
             },
             function(erro) {
                 alertify.alert(erro.data);
             }
         );
+    }
+
+    function calcularTotal(comandaItens){
+        let total = 0;
+        for (var item in comandaItens) {
+            total += comandaItens[item].total;
+        }
+        $scope.comandaTotal = total;
     }
 
     $scope.limparComanda = function(){

@@ -7,6 +7,9 @@ BarDG
 
 Gerenciamento de comandas
 
+Adicionar nova comenda ou recuperar comadas existentes:
+![alt text](http://url/to/img.png)
+
 Adicionar itens
 
 Visualizar comanda
